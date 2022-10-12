@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 
 ##########################################################
+# 4 kyu Simplifying multilinear polynomials              #
 # https://www.codewars.com/kata/55f89832ac9a66518f000118 #
+# Author: Alexey Kruglov <alexkruglow@gmail.com>         #
 ##########################################################
+
 
 def len_alpha(s: str) -> int:
     '''Return value how many alpha symbols is contained in the string.'''
@@ -17,11 +20,11 @@ def get_alpha_only(s: str) -> str:
 def sort_items_by_len_and_abc(list_to_sort: list) -> list:
     '''Return sorted list by item length and abc if len is equal.'''
     flag: bool = True
-    l_t_s = list_to_sort.copy()
+    l_t_s: list = list_to_sort.copy()
     while flag:
         flag = False
         for i in range(len(list_to_sort) - 1):
-            j = i + 1
+            j: int = i + 1
             len_i: int = len_alpha(l_t_s[i])
             len_j: int = len_alpha(l_t_s[j])
             if len_i > len_j:
@@ -30,7 +33,7 @@ def sort_items_by_len_and_abc(list_to_sort: list) -> list:
             len_is_equal: bool = len_i == len_j
             alpha_only_i: str = get_alpha_only(l_t_s[i])
             alpha_only_j: str = get_alpha_only(l_t_s[j])
-            abc_incorrect = alpha_only_i > alpha_only_j
+            abc_incorrect: bool = alpha_only_i > alpha_only_j
             if len_is_equal and abc_incorrect:
                 l_t_s[i], l_t_s[j] = l_t_s[j], l_t_s[i]
                 flag = True
@@ -58,10 +61,7 @@ def simplify(poly: str) -> str:
         variables: str = ''
         for c in item:
             if c in '+-':
-                if c == '+':
-                    sign = 1
-                else:
-                    sign = -1
+				sign = 1 if c == '+' else -1
             if c.isdigit():
                 dig_str = f'{dig_str}{c}'
             if c.isalpha():
